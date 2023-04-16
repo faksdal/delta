@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 {
 	int		c, optionIndex, deg, min, sec;
 	float	float_sec;
-	float	input = 0L, output;
+	//float	input = 0L, output;
 	char	*shortOptions = (char*)"";
 	
 	struct option longOptions[] = {
@@ -54,19 +54,12 @@ int main(int argc, char *argv[])
 						printf("Conversion: %d°%d'%f'' =  %f°\n", d.getDeg(), d.getMin(), d.getSec(), d.getDecDegrees());
 						break;
 						}
-			case 2:		//input = atof(optarg);
-						//deg = atoi(optarg);
-						//while(*optarg++ != '.');
-						//*optarg--;
-						//min = round(output = atof(optarg) * 60.0);
-						//while(*optarg++ != '.');
-						//*optarg--;
-						//printf("\n\n Output: %f", output);
-						//output -= min;
-						//printf("\n\n Output: %f\n", output);
-						//float_sec = (output*60);
-						//printf("%f° = %d°%d'%f''\n\n", input, deg, min, float_sec);
+			case 2:		{
+						convertDegrees d(optarg, decToDeg, '-');
+
+						printf("Conversion: f° = %d°%d'%f''\n", d.getDecDegrees(), d.getDeg(), d.getMin(), d.getSec());
 						break;
+			}
 			case 3:		//input = atof(optarg);
 						//output = ((input * 9/5) + 32);
 						//printf("%f°C = %f°F\n\n", input, output);
@@ -91,7 +84,7 @@ int main(int argc, char *argv[])
 
 void printUsage(void)
 {
-	printf("Usage: dtd --degtodec <deg>.<min>.<sec>\n");
+	printf("Usage: dtd --degtodec <deg>-<min>-<sec>\n");
 	printf("       dtd --dectodeg <decimaldegrees>\n");
 	//printf("       dtd --ctof <degrees Celcius>\n");
 	//printf("       dtd --ftoc <degrees Fahrenheit>\n");

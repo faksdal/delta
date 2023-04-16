@@ -23,7 +23,8 @@ class convertDegrees {
 	char	*inputString;
 	char	degreeSeparator;
 	
-	void invoceDegreesToDecimalConvertion(char* input);
+	void invoceDegreesToDecimalConvertion(char* optarg);
+	void invoceDecimalToDegreesConvertion(char* optarg);
 
 public:
 	convertDegrees(char* input, mode m, char separator);
