@@ -8,42 +8,45 @@
  *      
  */
 
-#include "math.h"
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "src/degrees.h"
 
 
-convertDegrees::convertDegrees(char* optarg, mode m, char separator)
+convertDegrees::convertDegrees(char* _inputString, mode m, char separator)
 {
 	degreeSeparator = separator;
+	inputString		= _inputString;
 	
 	switch(m){
-		case degToDec:	invoceDegreesToDecimalConvertion(optarg);
+		case degToDec:	degreesToDecimalConvertion();
 						break;
-		case decToDeg:	invoceDecimalToDegreesConvertion(optarg);
+		case decToDeg:	decimalToDegreesConvertion();
 						break;
 		default:		break;
 	}
 }
 
 
-void convertDegrees::invoceDegreesToDecimalConvertion(char* optarg)
+void convertDegrees::degreesToDecimalConvertion(void)
 {
+	char*	ptrBuffer = inputString;
+
 	//printf("Input: %s\n", input);
-	deg = atoi(optarg);
+	deg = atoi(ptrBuffer);
 	//printf("Deg: %d\n", deg);
 
-	while(*optarg++ != degreeSeparator);
+	while(*ptrBuffer++ != degreeSeparator);
 
 	//printf("Input: %s\n", input);
-	min = atoi(optarg);
+	min = atoi(ptrBuffer);
 	//printf("Min: %d\n", min);
 
-	while(*optarg++ != degreeSeparator);
+	while(*ptrBuffer++ != degreeSeparator);
 
 	//printf("Input: %s\n", input);
-	sec = atof(optarg);
+	sec = atof(ptrBuffer);
 	//printf("Sec: %f\n", sec);
 	decDegrees = deg + min/60.0 + sec/3600.0;
 	//printf("decimalDegrees: %f\n", decDegrees);
@@ -53,61 +56,30 @@ void convertDegrees::invoceDegreesToDecimalConvertion(char* optarg)
 
 
 
-void convertDegrees::invoceDecimalToDegreesConvertion(char* optarg)
+void convertDegrees::decimalToDegreesConvertion(void)
 {
-	float	output, input;
+	double	outputValue, inputValue;
+	char*	ptrBuffer = inputString;
 
 
 
-	input = atof(optarg);
-	printf("Optarg: %s, Input %f\n", optarg, input);
+	decDegrees = inputValue = atof(ptrBuffer);
+	printf("inputValue: %f\n", inputValue);
 
-	deg = atoi(optarg);
-	printf("Deg: %d\n", deg);
+	deg = (int) inputValue;
+	outputValue = inputValue - deg;
+	printf("deg: %d, outputValue: %8.5f, inputValue: %8.5f\n", deg, outputValue, inputValue);
 
-	input = atof(optarg) - deg;
-	printf("Input: %f\n", input);
+	inputValue = outputValue * 60.0;
+	min = (int) inputValue;
+	outputValue = inputValue - min;
+	printf("min: %d, outputValue: %8.5f, inputValue: %8.5f\n", min, outputValue, inputValue);
 
-	output = input * 60.0;
-	printf("Output: %f, input: %f\n", output, input);
+	inputValue = outputValue * 60.0;
+	sec = (float)inputValue;
+	printf("sec: %8.5f, outputValue: %8.5f, inputValue: %8.5f\n", sec, outputValue, inputValue);
 
-	min = (output);
-	printf("Min: %d\n", min);
+	printf("\n");
 
-	input
-
-	/*
-	while(*optarg++ != '.');
-	*optarg--;
-	printf("Optarg %s\n", optarg);
-
-	min = round(output = atof(optarg) * 60.0);
-	printf("Min: %d\n", min);
-
-	output -= min;
-	sec = (output * 60);
-	printf("%f° = %d°%d'%f''\n\n", input, deg, min, sec);
-	*/
-
-	/*
-	printf("Input: %s\n", input);
-	deg = atoi(input);
-	printf("Degrees: %d\n", deg);
-
-	while(*input++ != ".");
-	*input--;
-	min = round(output = atof(input) * 60.0);
-
-	printf("Input: %s\n", input);
-	*input--;
-	printf("Input: %s\n", input);
-	min = round(output = atof(input) * 60.0);
-
-	//printf("\n\n Output: %f", output);
-	//output -= min;
-	//printf("\n\n Output: %f\n", output);
-	//float_sec = (output*60);
-	//printf("%f° = %d°%d'%f''\n\n", input, deg, min, float_sec);
-	*/
 	return;
 }

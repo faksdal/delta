@@ -29,15 +29,15 @@ int main(int argc, char *argv[])
 	char	*shortOptions = (char*)"";
 	
 	struct option longOptions[] = {
-		{"degtodec", required_argument, NULL, 1},
-		{"dectodeg", required_argument, NULL, 2},
-		{"ctof", required_argument, NULL, 3},
-		{"ftoc", required_argument, NULL, 4},
-		{"atob", required_argument, NULL, 5},
+		{"degtodec",	required_argument, NULL, 1},
+		{"dectodeg",	required_argument, NULL, 2},
+		{"ctof",		required_argument, NULL, 3},
+		{"ftoc",		required_argument, NULL, 4},
+		{"help",		required_argument, NULL, 5},
 		{0, 0, 0, 0}
 	};
 	
-	printf("\ndtd, a command line converting utility by Jon Leithe!\n\n");
+	printf("\ndelta, a command line converting utility by Jon Leithe!\n\n");
 	if(argc < 2){
 		printf("To few arguments\n");
 		printUsage();
@@ -51,13 +51,13 @@ int main(int argc, char *argv[])
 			case 1:		{
 						convertDegrees d(optarg, degToDec, '-');
 
-						printf("Conversion: %d°%d'%f'' =  %f°\n", d.getDeg(), d.getMin(), d.getSec(), d.getDecDegrees());
+						printf("Conversion: %d°%d'%f'' =  %12.9f°\n", d.getDeg(), d.getMin(), d.getSec(), d.getDecDegrees());
 						break;
 						}
 			case 2:		{
 						convertDegrees d(optarg, decToDeg, '-');
 
-						printf("Conversion: f° = %d°%d'%f''\n", d.getDecDegrees(), d.getDeg(), d.getMin(), d.getSec());
+						printf("Conversion: %12.9f° = %d°%d'%12.9f''\n", d.getDecDegrees(), d.getDeg(), d.getMin(), d.getSec());
 						break;
 			}
 			case 3:		//input = atof(optarg);
@@ -69,14 +69,16 @@ int main(int argc, char *argv[])
 						//printf("%f°F = %f°C\n\n", input, output);
 						break;
 			case 5:		//invoceatob()
+						printUsage();
 						break;
 			default:	//printf("No option set!\n");
-						//printUsage();
+						printUsage();
 						break;
 		}
 	}
 	
 
+	printf("\n");
 	return 0;
 }
 
@@ -84,8 +86,8 @@ int main(int argc, char *argv[])
 
 void printUsage(void)
 {
-	printf("Usage: dtd --degtodec <deg>-<min>-<sec>\n");
-	printf("       dtd --dectodeg <decimaldegrees>\n");
+	printf("Usage: delta --degtodec <deg>-<min>-<sec>\n");
+	printf("       delta --dectodeg <decimaldegrees>\n");
 	//printf("       dtd --ctof <degrees Celcius>\n");
 	//printf("       dtd --ftoc <degrees Fahrenheit>\n");
 }
