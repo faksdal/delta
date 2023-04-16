@@ -13,7 +13,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <getopt.h>
-#include "source/degtodec.h"
+#include "src/degrees.h"
 
 
 void printUsage(void);
@@ -49,35 +49,36 @@ int main(int argc, char *argv[])
 	while((c = getopt_long(argc, argv, shortOptions, longOptions, &optionIndex)) != -1){
 		switch(c){
 			case 1:		{
-						dtd d(optarg, degToDec);
-						printf("%d°%d'%d'' =  %f°\n", d.getDeg(), d.getMin(), d.getSec(), d.getDecDegrees());
+						convertDegrees d(optarg, degToDec, '-');
+
+						printf("Conversion: %d°%d'%f'' =  %f°\n", d.getDeg(), d.getMin(), d.getSec(), d.getDecDegrees());
 						break;
 						}
-			case 2:		input = atof(optarg);
-						deg = atoi(optarg);
-						while(*optarg++ != '.');
-						*optarg--;
-						min = round(output = atof(optarg) * 60.0);
+			case 2:		//input = atof(optarg);
+						//deg = atoi(optarg);
 						//while(*optarg++ != '.');
 						//*optarg--;
-						printf("\n\n Output: %f", output);
-						output -= min;
-						printf("\n\n Output: %f\n", output);
-						float_sec = (output*60);
-						printf("%f° = %d°%d'%f''\n\n", input, deg, min, float_sec);
+						//min = round(output = atof(optarg) * 60.0);
+						//while(*optarg++ != '.');
+						//*optarg--;
+						//printf("\n\n Output: %f", output);
+						//output -= min;
+						//printf("\n\n Output: %f\n", output);
+						//float_sec = (output*60);
+						//printf("%f° = %d°%d'%f''\n\n", input, deg, min, float_sec);
 						break;
-			case 3:		input = atof(optarg);
-						output = ((input * 9/5) + 32);
-						printf("%f°C = %f°F\n\n", input, output);
+			case 3:		//input = atof(optarg);
+						//output = ((input * 9/5) + 32);
+						//printf("%f°C = %f°F\n\n", input, output);
 						break;
-			case 4:		input = atof(optarg);
-						output = ((input - 32) * 5/9);
-						printf("%f°F = %f°C\n\n", input, output);
+			case 4:		//input = atof(optarg);
+						//output = ((input - 32) * 5/9);
+						//printf("%f°F = %f°C\n\n", input, output);
 						break;
 			case 5:		//invoceatob()
 						break;
-			default:	printf("No option set!\n");
-						printUsage();
+			default:	//printf("No option set!\n");
+						//printUsage();
 						break;
 		}
 	}
@@ -92,6 +93,6 @@ void printUsage(void)
 {
 	printf("Usage: dtd --degtodec <deg>.<min>.<sec>\n");
 	printf("       dtd --dectodeg <decimaldegrees>\n");
-	printf("       dtd --ctof <degrees Celcius>\n");
-	printf("       dtd --ftoc <degrees Fahrenheit>\n");
+	//printf("       dtd --ctof <degrees Celcius>\n");
+	//printf("       dtd --ftoc <degrees Fahrenheit>\n");
 }

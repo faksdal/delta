@@ -10,10 +10,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "source/degtodec.h"
+#include "source/degrees.h"
 
 
-dtd::dtd(char *input, mode m)
+convertDegrees::convertDegrees(char *input, mode m)
 {
 	float	retVal;
 	

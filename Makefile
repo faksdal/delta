@@ -1,16 +1,16 @@
  
 CC=g++
 CFLAGS=-I. -I./source
-OBJ = obj/dtd.o obj/degtodec.o
+OBJ = obj/main.o obj/degrees.o
 
 all: $(OBJ)
-	$(CC) $(OBJ) -o dtd
+	$(CC) $(OBJ) -o delta
 
-obj/dtd.o: dtd.cpp
-	$(CC) $(CFLAGS) -c -o obj/dtd.o dtd.cpp
+obj/main.o: main.cpp
+	$(CC) $(CFLAGS) -c -o obj/main.o main.cpp
 
-obj/degtodec.o: source/degtodec.cpp
-	$(CC) $(CFLAGS) -c -o obj/degtodec.o source/degtodec.cpp
+obj/degrees.o: src/degrees.cpp
+	$(CC) $(CFLAGS) -c -o obj/degrees.o src/degrees.cpp
 
 #obj/JulianDay.o : source/JulianDay.h source/JulianDay.cpp
 #	$(CC) $(CFLAGS) -c -o obj/JulianDay.o source/JulianDay.cpp
@@ -20,4 +20,4 @@ obj/degtodec.o: source/degtodec.cpp
 
 clean:
 	rm -rf obj/*.o
-	rm dtd
+	rm delta
