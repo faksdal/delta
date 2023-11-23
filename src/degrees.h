@@ -18,23 +18,24 @@ enum	mode {degToDec, decToDeg};
 class convertDegrees {
 
 	int		deg, min;
+	bool	verbose;
 	double	sec, decDegrees;
 	
 	char	*inputString;
 	char	degreeSeparator;
 	
-	void degreesToDecimalConvertion(void);
-	void decimalToDegreesConvertion(void);
+	void degreesToDecimalConversion(void);
+	void decimalToDegreesConversion(void);
 
 public:
-	convertDegrees(char* _inputString, mode m, char separator);
+	convertDegrees(char* _inputString, mode m, char separator, bool _verbose);
 	
 	
-	int		getDeg(void){return deg;}
-	int		getMin(void){return min;}
-	double	getSec(void){return sec;}
+	int		getDeg(void)		{return deg;}
+	int		getMin(void)		{return min;}
+	double	getSec(void)		{return sec;}
 	
-	double getDecDegrees(void){return decDegrees;}
+	double getDecDegrees(void)	{return decDegrees;}
 	
 };
 

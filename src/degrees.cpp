@@ -14,22 +14,23 @@
 #include "src/degrees.h"
 
 
-convertDegrees::convertDegrees(char* _inputString, mode m, char separator)
+convertDegrees::convertDegrees(char* _inputString, mode m, char separator, bool _verbose)
 {
 	degreeSeparator = separator;
 	inputString		= _inputString;
+	verbose			= _verbose;
 	
 	switch(m){
-		case degToDec:	degreesToDecimalConvertion();
+		case degToDec:	degreesToDecimalConversion();
 						break;
-		case decToDeg:	decimalToDegreesConvertion();
+		case decToDeg:	decimalToDegreesConversion();
 						break;
 		default:		break;
 	}
 }
 
 
-void convertDegrees::degreesToDecimalConvertion(void)
+void convertDegrees::degreesToDecimalConversion(void)
 {
 	char*	ptrBuffer = inputString;
 
@@ -56,7 +57,7 @@ void convertDegrees::degreesToDecimalConvertion(void)
 
 
 
-void convertDegrees::decimalToDegreesConvertion(void)
+void convertDegrees::decimalToDegreesConversion(void)
 {
 	double	outputValue, inputValue;
 	char*	ptrBuffer = inputString;
@@ -64,7 +65,8 @@ void convertDegrees::decimalToDegreesConvertion(void)
 
 
 	decDegrees = inputValue = atof(ptrBuffer);
-	printf("inputValue: %f\n", inputValue);
+	if(verbose)
+		printf("inputValue: %f\n", inputValue);
 
 	deg = (int) inputValue;
 	outputValue = inputValue - deg;
@@ -79,7 +81,7 @@ void convertDegrees::decimalToDegreesConvertion(void)
 	sec = (float)inputValue;
 	printf("sec: %8.5f, outputValue: %8.5f, inputValue: %8.5f\n", sec, outputValue, inputValue);
 
-	printf("\n");
+	//printf("\n");
 
 	return;
 }

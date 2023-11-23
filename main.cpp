@@ -24,22 +24,27 @@ void printUsage(void);
 int main(int argc, char *argv[])
 {
 	int		c, optionIndex, deg, min, sec;
+	bool	verbose = false;
+	char	*shortOptions = (char*)"";
 	float	float_sec;
 	//float	input = 0L, output;
-	char	*shortOptions = (char*)"";
 	
+
 	struct option longOptions[] = {
-		{"degtodec",	required_argument, NULL, 1},
-		{"dectodeg",	required_argument, NULL, 2},
-		{"ctof",		required_argument, NULL, 3},
-		{"ftoc",		required_argument, NULL, 4},
-		{"help",		required_argument, NULL, 5},
+		{"degtodec",	required_argument,	NULL,	1},
+		{"dectodeg",	required_argument,	NULL,	2},
+		{"verbose",		no_argument,		NULL,	3},
+		/*
+		{"ctof",		required_argument,	NULL,	4},
+		{"ftoc",		required_argument,	NULL,	5},
+		{"help",		required_argument,	NULL,	6},
+		*/
 		{0, 0, 0, 0}
 	};
 	
-	printf("\ndelta, a command line converting utility by Jon Leithe!\n\n");
+	//printf("\ndelta, a command line converting utility by Jon Leithe!\n\n");
 	if(argc < 2){
-		printf("To few arguments\n");
+		printf("Too few arguments\n");
 		printUsage();
 		return (2);
 	}
@@ -49,26 +54,33 @@ int main(int argc, char *argv[])
 	while((c = getopt_long(argc, argv, shortOptions, longOptions, &optionIndex)) != -1){
 		switch(c){
 			case 1:		{
-						convertDegrees d(optarg, degToDec, '-');
+						convertDegrees d(optarg, degToDec, '-', verbose);
 
-						printf("Conversion: %d°%d'%f'' =  %12.9f°\n", d.getDeg(), d.getMin(), d.getSec(), d.getDecDegrees());
+						if(verbose)
+							printf("Conversion: %d°%d'%f'' =  %12.9f°\n", d.getDeg(), d.getMin(), d.getSec(), d.getDecDegrees());
+						else
+							printf("%12.9f°\n", d.getDecDegrees());
 						break;
 						}
 			case 2:		{
-						convertDegrees d(optarg, decToDeg, '-');
+						convertDegrees d(optarg, decToDeg, '-', verbose);
 
 						printf("Conversion: %12.9f° = %d°%d'%12.9f''\n", d.getDecDegrees(), d.getDeg(), d.getMin(), d.getSec());
 						break;
-			}
-			case 3:		//input = atof(optarg);
+						}
+			case 3:		{
+							verbose = true;
+							break;
+						}
+			case 4:		//input = atof(optarg);
 						//output = ((input * 9/5) + 32);
 						//printf("%f°C = %f°F\n\n", input, output);
 						break;
-			case 4:		//input = atof(optarg);
+			case 5:		//input = atof(optarg);
 						//output = ((input - 32) * 5/9);
 						//printf("%f°F = %f°C\n\n", input, output);
 						break;
-			case 5:		//invoceatob()
+			case 6:		//invoceatob()
 						printUsage();
 						break;
 			default:	//printf("No option set!\n");
@@ -78,7 +90,7 @@ int main(int argc, char *argv[])
 	}
 	
 
-	printf("\n");
+	//printf("\n");
 	return 0;
 }
 
