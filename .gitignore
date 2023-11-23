@@ -3,3 +3,5 @@ obj/
 .cproject
 .project
 .settings/
+.git/
+
