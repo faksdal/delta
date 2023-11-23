@@ -57,6 +57,8 @@ void convertDegrees::degreesToDecimalConversion(void)
 
 
 
+//	TODO: Add capability to use , (comma) as decimal separator instead of . (puntuation mark)
+
 void convertDegrees::decimalToDegreesConversion(void)
 {
 	double	outputValue, inputValue;
