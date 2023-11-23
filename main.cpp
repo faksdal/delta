@@ -43,6 +43,7 @@ int main(int argc, char *argv[])
 	};
 	
 	//printf("\ndelta, a command line converting utility by Jon Leithe!\n\n");
+
 	if(argc < 2){
 		printf("Too few arguments!\n");
 		printUsage();
