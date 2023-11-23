@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
 	
 	//printf("\ndelta, a command line converting utility by Jon Leithe!\n\n");
 	if(argc < 2){
-		printf("Too few arguments\n");
+		printf("Too few arguments!\n");
 		printUsage();
 		return (2);
 	}
@@ -65,7 +65,10 @@ int main(int argc, char *argv[])
 			case 2:		{
 						convertDegrees d(optarg, decToDeg, '-', verbose);
 
-						printf("Conversion: %12.9f° = %d°%d'%12.9f''\n", d.getDecDegrees(), d.getDeg(), d.getMin(), d.getSec());
+						if(verbose)
+							printf("Conversion: %12.9f° = %d°%d'%12.9f''\n", d.getDecDegrees(), d.getDeg(), d.getMin(), d.getSec());
+						else
+							printf("%d°%d'%12.9f''\n", d.getDeg(), d.getMin(), d.getSec());
 						break;
 						}
 			case 3:		{

@@ -70,18 +70,22 @@ void convertDegrees::decimalToDegreesConversion(void)
 
 	deg = (int) inputValue;
 	outputValue = inputValue - deg;
-	printf("deg: %d, outputValue: %8.5f, inputValue: %8.5f\n", deg, outputValue, inputValue);
+	if(verbose)
+		printf("deg: %d, outputValue: %8.5f, inputValue: %8.5f\n", deg, outputValue, inputValue);
 
 	inputValue = outputValue * 60.0;
 	min = (int) inputValue;
 	outputValue = inputValue - min;
-	printf("min: %d, outputValue: %8.5f, inputValue: %8.5f\n", min, outputValue, inputValue);
+	if(verbose)
+		printf("min: %d, outputValue: %8.5f, inputValue: %8.5f\n", min, outputValue, inputValue);
 
 	inputValue = outputValue * 60.0;
 	sec = (float)inputValue;
-	printf("sec: %8.5f, outputValue: %8.5f, inputValue: %8.5f\n", sec, outputValue, inputValue);
+	if(verbose)
+		printf("sec: %8.5f, outputValue: %8.5f, inputValue: %8.5f\n", sec, outputValue, inputValue);
 
-	//printf("\n");
+	if(verbose)
+		printf("\n");
 
 	return;
 }
