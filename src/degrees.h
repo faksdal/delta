@@ -11,19 +11,20 @@
 #ifndef __degrees_h__
 #define __degrees_h__
 
-//float degtodec(char *inputString);
-
 enum	mode {degToDec, decToDeg};
+
+
 
 class convertDegrees {
 
 	int		deg, min;
 	bool	verbose;
-	double	sec, decDegrees;
-	
 	char	*inputString;
 	char	degreeSeparator;
+	double	sec, decDegrees;
 	
+	
+
 	void degreesToDecimalConversion(void);
 	void decimalToDegreesConversion(void);
 
@@ -33,8 +34,8 @@ public:
 	
 	int		getDeg(void)		{return deg;}
 	int		getMin(void)		{return min;}
+
 	double	getSec(void)		{return sec;}
-	
 	double getDecDegrees(void)	{return decDegrees;}
 	
 };
